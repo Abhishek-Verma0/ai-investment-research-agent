@@ -1,0 +1,27 @@
+# Render blueprint — deploys the whole app as ONE unified Web Service.
+# The build compiles the client (Vite) and the server (tsc); at runtime the Node
+# server serves client/dist as static files AND the /api routes. SSE streaming
+# works because this is a long-lived process (the reason Render is the primary
+# target over serverless — see docs/DECISIONS.md D9).
+services:
+  - type: web
+    name: ai-investment-research-agent
+    runtime: node
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: LLM_PROVIDER
+        value: gemini
+      - key: GEMINI_MODEL
+        value: gemini-3.1-flash-lite
+      - key: GEMINI_API_KEY
+        sync: false # set in the Render dashboard (secret)
+      - key: ALPHA_VANTAGE_API_KEY
+        sync: false
+      - key: TAVILY_API_KEY
+        sync: false
+      - key: PERSISTENCE_ENABLED
+        value: false

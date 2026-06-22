@@ -1,0 +1,73 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  color: rgb(226 232 240); /* slate-200 */
+  background-color: #060814;
+  /* Layered radial glows over a near-black base for depth. */
+  background-image:
+    radial-gradient(60rem 60rem at 15% -10%, rgba(99, 102, 241, 0.18), transparent 60%),
+    radial-gradient(50rem 50rem at 110% 10%, rgba(168, 85, 247, 0.14), transparent 55%),
+    radial-gradient(40rem 40rem at 50% 120%, rgba(16, 185, 129, 0.1), transparent 55%);
+  background-attachment: fixed;
+  -webkit-font-smoothing: antialiased;
+}
+
+@layer components {
+  /* Frosted-glass panel: translucent fill + blur + hairline border + soft glow. */
+  .glass {
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(16px) saturate(140%);
+    -webkit-backdrop-filter: blur(16px) saturate(140%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow:
+      0 1px 0 0 rgba(255, 255, 255, 0.06) inset,
+      0 20px 60px -20px rgba(0, 0, 0, 0.6);
+  }
+  .glass-strong {
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(22px) saturate(160%);
+    -webkit-backdrop-filter: blur(22px) saturate(160%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+}
+
+/* Animated gradient sweep used on the conviction bar / active step. */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+.shimmer {
+  background-size: 200% 100%;
+  animation: shimmer 2.2s linear infinite;
+}
+
+/* Custom scrollbar to match the dark theme. */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}

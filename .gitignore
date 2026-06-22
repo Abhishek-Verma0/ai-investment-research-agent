@@ -1,0 +1,40 @@
+# dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# builds
+dist/
+build/
+client/dist/
+server/dist/
+
+# env / secrets
+.env
+.env.local
+.env.*.local
+!.env.example
+
+# logs
+*.log
+npm-debug.log*
+
+# editor / os
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json
+
+# prisma / db
+*.sqlite
+*.sqlite-journal
+
+# misc
+.cache/
+coverage/
+.claude
+AI-Product-Intern-Assignment-v2.pdf
+
+# docs: publish the folder, but keep the internal decision log private
+docs/DECISIONS.md

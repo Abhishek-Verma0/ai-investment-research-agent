@@ -1,0 +1,27 @@
+{
+  "name": "ai-investment-research-agent",
+  "version": "0.1.0",
+  "private": true,
+  "description": "AI Investment Research Agent — takes a company name, researches it, and decides INVEST / PASS / WATCH with cited reasoning.",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "workspaces": [
+    "client",
+    "server"
+  ],
+  "scripts": {
+    "dev": "concurrently -n server,client -c blue,magenta \"npm:dev:server\" \"npm:dev:client\"",
+    "dev:client": "npm run dev --workspace client",
+    "dev:server": "npm run dev --workspace server",
+    "build": "npm run build --workspace client && npm run build --workspace server",
+    "start": "npm run start --workspace server",
+    "lint": "eslint . --ext .ts,.tsx",
+    "format": "prettier --write ."
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0",
+    "prettier": "^3.4.2"
+  }
+}
