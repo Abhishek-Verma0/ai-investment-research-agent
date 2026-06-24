@@ -8,7 +8,10 @@ services:
     name: ai-investment-research-agent
     runtime: node
     plan: free
-    buildCommand: npm install && npm run build
+    # --include=dev forces devDependencies (TypeScript, Vite, @types/*) to install
+    # even though NODE_ENV=production is set — they're needed to BUILD. The running
+    # server only needs the production deps.
+    buildCommand: npm install --include=dev && npm run build
     startCommand: npm start
     envVars:
       - key: NODE_ENV
